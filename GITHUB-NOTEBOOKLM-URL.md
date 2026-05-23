@@ -1,7 +1,8 @@
 # NotebookLM — GitHub single file
 
 **Repository:** [shaneturon3-web/ControlTower](https://github.com/shaneturon3-web/ControlTower)  
-**Branch:** `main`
+**Branch:** `main`  
+**Visibility:** Public (required — `raw.githubusercontent.com` returns 404 for private repos)
 
 ## File to add in NotebookLM
 
