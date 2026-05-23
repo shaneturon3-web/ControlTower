@@ -2,13 +2,13 @@
 
 **Last updated:** 2026-05-23
 
-`OPERATIONAL_PHASE=Architectural`
+`OPERATIONAL_PHASE=Engineering`
 
 ## Current state
 
-- **ShipYard Web** is a Phase 1 MVP (read-only + new pending), deployed at `https://shipyard-web.shaneturon3.workers.dev/`.
-- **ShipYard CLI** handles local project indexing and scaffolding via Python on the OptiPlex server.
-- **D1** holds project index mirror; no tree/deployment state machine yet.
+- **ShipYard Web** orchestration node live at `https://shipyard-web.shaneturon3.workers.dev/` (D1 tree/deploy/sugar-cube, WASM parser, Access + bridge secret).
+- **ShipYard CLI** handles local project indexing; `shipyard sync` validates mount and dry-runs sync (never auto-apply).
+- **Local bridge** at `~/ShipYard/bridge/shipyard-bridge-agent.sh` (poll + refurbish gate).
 
 ## Target state
 
