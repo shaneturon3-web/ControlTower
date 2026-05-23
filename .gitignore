@@ -1,0 +1,8 @@
+.env
+*.pem
+allamakey.txt
+.venv/
+__pycache__/
+*.pyc
+07_LOGS/
+08_BACKUPS/
