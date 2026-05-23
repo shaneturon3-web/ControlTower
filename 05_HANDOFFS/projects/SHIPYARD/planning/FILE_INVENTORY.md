@@ -38,4 +38,5 @@
 | Repo | Role |
 |------|------|
 | `shaneturon3-web/ControlTower` | Orchestration docs, NOTEBOOKLM.md |
+| `shaneturon3-web/ShipYard` | CLI + `web/` Worker source — https://github.com/shaneturon3-web/ShipYard |
 | `shaneturon3-web/PsyNova` | Product codebase (separate) |
