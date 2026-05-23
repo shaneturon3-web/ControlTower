@@ -1,0 +1,15 @@
+{
+  "generated": "2026-05-23",
+  "source": "06_PROJECT_INDEX/PROJECT_INDEX.md",
+  "note": "Mirror for ShipYard Web D1; CLI canonical source remains PROJECT_INDEX.md",
+  "projects": [
+    { "slug": "CONTROL_TOWER", "name": "orchestration root" },
+    { "slug": "SUGARCUBE_DOCTRINE", "name": "doctrine root" },
+    { "slug": "PSYNOVA", "name": "product/business project" },
+    { "slug": "E4C_CASE", "name": "case-management project" },
+    { "slug": "FAMILY_OS", "name": "family/system project" },
+    { "slug": "JOB_SEARCH", "name": "employment transition project" },
+    { "slug": "PORTFOLIO", "name": "public/professional narrative project" },
+    { "slug": "SHIPYARD", "name": "Phase-2 orchestration CLI" }
+  ]
+}

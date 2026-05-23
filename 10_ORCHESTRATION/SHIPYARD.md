@@ -40,6 +40,22 @@ shipyard sync SHIPYARD
 | Semantic (Architect) | `~/CONTROL TOWER/05_HANDOFFS/projects/<SLUG>/` |
 | Execution (Builder) | `~/Projects/` (per `EXECUTION_POINTER.md`) |
 
+## ShipYard Web (Cloudflare)
+
+**Execution:** `~/ShipYard/web/`  
+**Docs:** `05_HANDOFFS/projects/SHIPYARD/planning/sprints/001-discovery-architecture/`
+
+```bash
+cd ~/ShipYard/web && npm install && npm run db:local && npm run dev
+```
+
+| Phase | Scope |
+|-------|--------|
+| 1 MVP | Read-only dashboard + D1 seed (`GET /api/projects`) |
+| 2 | `POST /api/new` → local `shipyard new` bridge |
+| 3 | R2 planning snapshots + `GET /api/audit/:slug` |
+| 4 | Refurbish/sync status on dashboard |
+
 ## NotebookLM (Architect synthesis)
 
 - Manual: `04_GLOBAL_RULES/NOTEBOOKLM-ARCHITECTURE-SPECIFICATION.md`
