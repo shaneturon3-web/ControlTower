@@ -3,6 +3,16 @@
 **Notebook name:** `CT-SHIPYARD-Architect`  
 **Profile:** A (per-slug Architect) — see `04_GLOBAL_RULES/NOTEBOOKLM-SOURCE-MANIFEST.md`
 
+## GitHub (one source for NotebookLM)
+
+**Point NotebookLM at this single file (after push):**
+
+https://raw.githubusercontent.com/shaneturon3-web/ControlTower/main/NOTEBOOKLM.md
+
+Publish: `~/CONTROL TOWER/09_SYNCHRONIZATION/publish-control-tower-github.sh` (requires `gh auth login`).
+
+Product app repo **PsyNova** stays separate: https://github.com/shaneturon3-web/PsyNova
+
 ## Upload checklist (this project)
 
 - [ ] `04_GLOBAL_RULES/NOTEBOOKLM-ARCHITECTURE-SPECIFICATION.md`
