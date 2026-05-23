@@ -1,37 +1,22 @@
-# Acceptance — ShipYard Web
-
-## Functional acceptance
-
-- [ ] **Dashboard visibility** — Web UI lists all projects in D1 with slug, name, phase, sync state, handoff-ready flag
-- [ ] **API projects** — `GET /api/projects` returns JSON array matching seeded index
-- [ ] **API detail** — `GET /api/projects/:slug` returns single project or 404
-- [ ] **Scaffold triggering** — `POST /api/new` creates pending D1 row and returns `shipyard new` command payload (Phase 2)
-- [ ] **AI accessibility** — `GET /api/audit/:slug` returns blueprint metadata or R2 object (Phase 3)
-- [ ] **Handoff indicator** — Dashboard shows Handoff Ready when required planning files exist (flag in D1 or computed at seed)
-- [ ] **CLI compatibility** — `shipyard list` still reads `PROJECT_INDEX.md`; D1 seed matches slugs
-
-## Test scenarios
-
-### Happy path
-
-1. Run `npm run db:local` and `npm run dev` in `~/ShipYard/web`.
-2. Open dashboard; see CONTROL_TOWER, SHIPYARD, PSYNOVA, etc.
-3. `curl localhost:8787/api/projects` returns 200 JSON.
-
-### Edge cases
-
-- Unknown slug → 404 on detail/audit routes
-- Empty D1 → empty list, UI message
-
-### Error cases
-
-- Invalid JSON on `POST /api/new` → 400
+# Acceptance — Active Orchestration Node
 
 ## Definition of done
 
-- [ ] Architect Pack 001 files saved under `05_HANDOFFS/projects/SHIPYARD/planning/`
-- [ ] `~/ShipYard/web/` deployable with `wrangler dev`
-- [ ] D1 schema applied locally
-- [ ] README in `web/` documents deploy and CLI bridge
-- [ ] `OPERATIONAL_PHASE` remains Architectural until human approves Engineering ship
-- [ ] No secrets committed to GitHub
+1. **Parsing accuracy** — WASM-based parser extracts a tree from a pasted repository manifest and renders it in the UI.
+2. **D1 persistence** — Every node tag (`modify` / `replace` / `deprecated`) in the side pane streams to D1.
+3. **Deployment routing** — "Deploy" triggers a documented webhook reaching the local execution agent via Tailscale (or signed queue polled by bridge).
+4. **State visibility** — Dashboard shows deployment status (`provisioning`, `building`, `live`, `failed`) via SSE or polling.
+5. **Sugar Cube integrity** — "Export Architecture Pack" produces one compressed text blob sufficient for an AI to recreate intended project state without semantic drift.
+
+## Functional checks
+
+- [ ] `002_orchestration.sql` applied locally and on remote D1
+- [ ] `POST /api/workspaces/:slug/tree` persists parsed nodes
+- [ ] `POST /api/deploy/:slug` creates `deployment_events` row
+- [ ] `GET /api/sugar-cube/:slug/export` returns valid JSON/YAML bundle
+- [ ] Local bridge doc reviewed; Tailscale hostname configured
+- [ ] Cloudflare Access considered for `/api/deploy/*`
+
+## Phase gate
+
+Remain `OPERATIONAL_PHASE=Architectural` until human approves Engineering ship of bridge + WASM parser.

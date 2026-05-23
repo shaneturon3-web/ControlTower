@@ -12,6 +12,10 @@
 | `public/index.html` | Dashboard (Tailwind + HTMX) |
 | `public/app.js` | Client helpers |
 | `scripts/seed-d1.sql` | Seed from PROJECT_INDEX slugs |
+| `schema/002_orchestration.sql` | Tree, deployment, sugar_cubes tables |
+| `src/orchestration.ts` | Orchestration API handlers |
+| `docs/LOCAL_EXECUTION_BRIDGE.md` | Tailscale bridge operator guide |
+| `public/tree-parser.js` | Client tree parser (JS MVP) |
 
 ## CONTROL TOWER (semantic)
 

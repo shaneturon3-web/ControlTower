@@ -18,6 +18,10 @@ Integrate ShipYard as the Phase-2 orchestration layer so Cloud AI can see per-pr
 
 Evolve CLI into Cloudflare-native dashboard (Pages, Workers, D1, R2) while keeping local `shipyard` workflows. See sprint `001-discovery-architecture/blueprint.md`.
 
+## Active orchestration node (2026-05-23)
+
+Transition from static index to operational state machine: WASM/JS tree parser, D1 semantic router, Tailscale local execution bridge, Sugar Cube export for AI. Deployed: `https://shipyard-web.shaneturon3.workers.dev/`.
+
 ## Constraints
 
 - `shipyard sync` never auto-runs `--apply`

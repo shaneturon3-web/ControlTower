@@ -1,45 +1,37 @@
-# Domain — ShipYard Web
-
-## In scope
-
-### Project entity
-
-| Property | Description |
-|----------|-------------|
-| Slug | Indexed identifier (e.g. `PSYNOVA`, `SHIPYARD`) |
-| Status | Active / Archived / Pending scaffold |
-| Phase | Research / Architectural / Engineering |
-| Sync state | unknown / validated / dry-run-ok |
-| Handoff ready | Derived from required planning files |
-| Last modified | ISO timestamp |
-
-Maps to `05_HANDOFFS/projects/<SLUG>/` on CONTROL TOWER.
-
-### AI audit feedback
-
-| Property | Description |
-|----------|-------------|
-| project_slug | FK to project |
-| agent_type | NotebookLM, Gemini, ChatGPT, Cursor, etc. |
-| suggestion | Text feedback |
-| created_at | Timestamp |
-
-### Storage
-
-| Store | Use |
-|-------|-----|
-| D1 | Project index, audit log, status history |
-| R2 | Cached `planning/` snapshots for AI read API |
-
-## Out of scope (explicit)
-
-- Direct terminal execution on OptiPlex via web UI
-- Multi-tenant user management beyond Cloudflare Access
-- Replacing local CLI — web app must stay compatible with `shipyard` workflows
-- Auto-running `sync_control_tower.sh --apply` from the web UI
+# Domain — Active Orchestration Node
 
 ## Entities
 
-- **Project** — metadata row in D1
-- **AuditFeedback** — optional AI suggestions
-- **HandoffPacket** — files on Drive / local tower (not stored in D1 content, only flags)
+### Project workspace
+
+Root container for project state: immutable **before** snapshot and **target** modifications.
+
+### WASM tree parser
+
+In-browser logic to extract directory structures from pasted manifests or uploads without server-side compilation.
+
+### Deployment event
+
+State-tracked object in D1: `provisioning` → `building` → `live` → `failed`.
+
+### Sugar Cube (context bundle)
+
+Compressed serialized payload: directory state, change checklists, functional specs for downstream AI.
+
+### Tracking target
+
+File-tree node with metadata: `modify`, `replace`, `deprecated`, or `unchanged`.
+
+## Storage
+
+| Store | Role |
+|-------|------|
+| D1 | Projects, tree nodes, deployment events, sugar cube records |
+| R2 (future) | Large blueprint / planning snapshots |
+| Local node | Docker execution via Tailscale bridge |
+
+## Out of scope (explicit)
+
+- **Direct binary execution on Workers** — Workers are a **semantic router** only
+- **Public unauthenticated orchestration** — gate behind **Cloudflare Access**
+- Replacing ShipYard CLI or CONTROL TOWER handoff folders as source of truth

@@ -1,4 +1,4 @@
-# System State — SHIPYARD Web
+# System State — SHIPYARD Active Orchestration Node
 
 **Last updated:** 2026-05-23
 
@@ -6,35 +6,24 @@
 
 ## Current state
 
-| Area | State |
-|------|--------|
-| Platform | Local OptiPlex server (operator node) |
-| Interface | Python CLI (`Typer` + `Rich`) at `~/ShipYard` |
-| Logic | `shipyard/project_index.py`, `shipyard/tools/new_project_scaffold.py` |
-| Sync | Manual / operator `rclone`; `shipyard sync` dry-run only |
-| Handoffs | `~/CONTROL TOWER/05_HANDOFFS/projects/<SLUG>/` |
-| GitHub | Public `shaneturon3-web/ControlTower` — `NOTEBOOKLM.md` |
+- **ShipYard Web** is a Phase 1 MVP (read-only + new pending), deployed at `https://shipyard-web.shaneturon3.workers.dev/`.
+- **ShipYard CLI** handles local project indexing and scaffolding via Python on the OptiPlex server.
+- **D1** holds project index mirror; no tree/deployment state machine yet.
 
-## Target state (ShipYard Web)
+## Target state
 
-| Area | State |
-|------|--------|
-| Platform | Cloudflare Pages + Workers + D1 + R2 |
-| Interface | Web dashboard (HTML, Tailwind, HTMX) |
-| Logic | Worker API; D1 project metadata (mirrors index) |
-| Sync | Dashboard handoff-readiness indicators; CLI remains canonical for apply |
-| Security | Cloudflare Access (Zero Trust) at edge |
+- **Active orchestration node**: ShipYard Web is the primary UI for triggering deployments and parsing manifests.
+- **State machine**: Static JSON representation evolves into an event-driven relational model in **Cloudflare D1**.
+- **Context bundler**: Compile **Sugar Cubes** (structured high-gravity text blobs) for Cursor, Claude, and NotebookLM.
+- **Semantic router**: Workers route instructions to local compute via **Tailscale** bridge — Workers do not compile code.
 
 ## Integration health
 
-| Integration | Status |
-|-------------|--------|
-| ShipYard CLI | Active |
-| CONTROL TOWER handoffs | Active |
-| ShipYard Web (MVP) | Engineering — `~/ShipYard/web/` |
-| Cloudflare deploy | Operator: `wrangler deploy` when credentials configured |
-
-## Open questions
-
-- Webhook vs `rclone` for local folder creation after `POST /new`
-- R2 snapshot cadence for `planning/` folders
+| Component | Status |
+|-----------|--------|
+| ShipYard Web (MVP) | Live — `shipyard-web.shaneturon3.workers.dev` |
+| Orchestration schema (002) | Engineering — `web/schema/002_orchestration.sql` |
+| WASM tree parser | Engineering — client-side stub |
+| Local execution bridge | Planned — `web/docs/LOCAL_EXECUTION_BRIDGE.md` |
+| R2 planning snapshots | Blocked — R2 not enabled on account |
+| Cloudflare Access | Recommended for production orchestration routes |
